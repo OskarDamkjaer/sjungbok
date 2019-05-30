@@ -2,10 +2,10 @@
 <script>
 import {active, event_name, song_titles} from '../../static/event.json'
 import raw_songs from '../../static/songs.json'
-console.log(song_titles)
 const songs = Object.values(raw_songs).filter(s => song_titles.includes(s.title))
 
 import SongList from '../components/SongList.svelte'
+
 
 </script>
 
