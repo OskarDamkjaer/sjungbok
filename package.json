@@ -9,7 +9,8 @@
     "start": "node __sapper__/build",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
-    "test": "run-p --race dev cy:run"
+    "test": "run-p --race dev cy:run",
+    "lint": "prettier --write ./**/*.svelte"
   },
   "dependencies": {
     "compression": "^1.7.1",
@@ -44,7 +45,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,json,css,md}": [
+    "*.{js,json,css,md,svelte}": [
       "prettier --write",
       "git add"
     ]
