@@ -51,8 +51,7 @@
 <nav>
 	<ul>
 		<li><a class='{segment === undefined ? "selected" : ""}' href='.'>event</a></li>
-		<li><a class='{segment === "search" ? "selected" : ""}' href='search'>sök</a></li> 
-		<li><a rel=prefetch class='{segment === "songs" ? "selected" : ""}' href='songs'>sånger</a></li>
+		<li><a class='{segment === "songs" ? "selected" : ""}' href='songs'>alla sånger</a></li>
 
 	</ul>
 </nav>

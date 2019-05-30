@@ -1,22 +1,8 @@
-
-<script context="module">
-	export async function preload() {
-		const res = await this.fetch("songs.json");
-		const data = await res.json();
-		const songs = Object.values(data)
-
-
-		if (res.status === 200) {
-            return {songs};
-		} else {
-			this.error(res.status, data.message);
-		}
-	}
-</script>
-
 <script>
-    import Song from './_Song.svelte'
-    export let songs
+    import SongList from '../components/SongList.svelte'
+    import raw_songs from '../../static/songs.json'
+    const songs = Object.values(raw_songs)
+
     const containsAny = (song, fields, filter) => 
         fields.reduce((acc, field) => { 
             if (!song[field]) { // category not found, ignore
@@ -34,9 +20,7 @@
     $: search_fields = [s_title && "title", s_melody && "melodyTitle", s_lyrics &&"lyrics"].filter(t => t)
     $: filter = search_input.toLowerCase()
     $: filtered_songs = songs.filter(s => containsAny(s, search_fields, filter))
-    $: only_one_song = filtered_songs.length === 1
 </script>
-
 <style>
 	ul {
 		margin: 0 0 1em 0;
@@ -45,7 +29,7 @@
 </style>
 
 <svelte:head>
-	<title>Songs</title>
+	<title>Hela sjungboken</title>
 </svelte:head>
 
 <input bind:value={search_input} placeholder="Sök titel, melodi eller text...">
@@ -57,13 +41,4 @@
 <div> matcha text </div>
 <input type="checkbox" bind:checked={s_lyrics}>
 
-<ul>
-    {#each filtered_songs as song}
-        {#if only_one_song}
-            <Song {song} expand={true} />
-        {/if} 
-        <Song {song} /> 
-    {:else }
-        <h1>Inga sånger matchade din sökning</h1>
-	{/each}
-</ul>
+<SongList songs={filtered_songs}/>

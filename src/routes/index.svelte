@@ -1,3 +1,14 @@
+
+<script>
+import {active, event_name, song_titles} from '../../static/event.json'
+import raw_songs from '../../static/songs.json'
+console.log(song_titles)
+const songs = Object.values(raw_songs).filter(s => song_titles.includes(s.title))
+
+import SongList from '../components/SongList.svelte'
+
+</script>
+
 <style>
 	h1, figure, p {
 		text-align: center;
@@ -36,4 +47,8 @@
 	<title>Sjungbok</title>
 </svelte:head>
 
+<h1> {event_name} </h1>
+<SongList {songs} />
 
+
+<!-- TODO se till att inte cacha events mer än någon dag och om det inte finns något ge alla sånger som default-->
