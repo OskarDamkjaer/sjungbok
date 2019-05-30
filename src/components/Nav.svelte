@@ -1,5 +1,6 @@
 <script>
   export let segment;
+  import { active } from "../../static/event.json";
 </script>
 
 <style>
@@ -46,18 +47,26 @@
     padding: 1em 0.5em;
     display: block;
   }
+
+  .grey {
+    color: grey;
+  }
 </style>
 
 <nav>
   <ul>
     <li>
-      <a class={segment === undefined ? 'selected' : ''} href=".">event</a>
+      <a
+        class:grey={!active}
+        class={segment === undefined ? 'selected' : ''}
+        href=".">
+        sångblad
+      </a>
     </li>
     <li>
       <a class={segment === 'songs' ? 'selected' : ''} href="songs">
         alla sånger
       </a>
     </li>
-
   </ul>
 </nav>

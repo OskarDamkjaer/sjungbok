@@ -6,14 +6,17 @@
   $: only_one_song = songs.length === 1;
 </script>
 
-<!-- conceptet favoriter? -->
-<ul>
+<style>
+  div {
+    text-align: center;
+    margin-top: 1em;
+  }
+</style>
+
+<div>
   {#each songs as song}
-    {#if only_one_song}
-      <Song {song} expand={true} />
-    {/if}
-    <Song {song} />
+    <Song {song} expand={only_one_song} />
   {:else}
-    <h1>{empty_list_text}</h1>
+    <h2>{empty_list_text}</h2>
   {/each}
-</ul>
+</div>

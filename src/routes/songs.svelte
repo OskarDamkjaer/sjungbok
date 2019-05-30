@@ -28,25 +28,45 @@
 </script>
 
 <style>
-  ul {
-    margin: 0 0 1em 0;
-    line-height: 1.5;
+  .text_input {
+    width: 100%;
+    height: 2em;
+  }
+
+  span {
+    display: flex;
+    font-size: 0.9em;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
   }
 </style>
 
 <svelte:head>
-  <title>Hela sjungboken</title>
+  <title>Sjungbok</title>
 </svelte:head>
 
 <input
+  class="text_input"
   bind:value={search_input}
   placeholder="Sök titel, melodi eller text..." />
-<!-- TODO fina ikoner här -->
-<div>matcha titel</div>
-<input type="checkbox" bind:checked={s_title} />
-<div>matcha melodi</div>
-<input type="checkbox" bind:checked={s_melody} />
-<div>matcha text</div>
-<input type="checkbox" bind:checked={s_lyrics} />
+<div class="container">
+  <span>
+    <input id="s_title" type="checkbox" bind:checked={s_title} />
+    <label for="s_title">matcha titel</label>
+  </span>
+
+  <span>
+    <input id="s_melody" type="checkbox" bind:checked={s_melody} />
+    <label for="s_melody">matcha melodi</label>
+  </span>
+
+  <span>
+    <input id="s_lyrics" type="checkbox" bind:checked={s_lyrics} />
+    <label for="s_lyrics">matcha text</label>
+  </span>
+</div>
 
 <SongList songs={filtered_songs} />
