@@ -1,95 +1,46 @@
 <script>
   import SongList from "../components/SongList.svelte";
-  import { onMount } from "svelte";
   import songs from "../../static/booksongs.json";
-  let event = { title: "non" };
+  import { onMount } from "svelte";
 
-  onMount(() => {
-    const eventSource = new EventSource("/event");
-
-    eventSource.onmessage = e => {
-      const new_event = JSON.parse(e.data);
-      if (new_event) event = new_event;
-    };
+  onMount(async () => {
+    const res = await fetch("/event");
+    event = await res.json();
   });
 
-  const containsAny = (song, fields, filter) =>
-    fields.reduce((acc, field) => {
-      if (!song[field]) {
-        // category not found, ignore
-        return acc;
-      }
+  let event;
+  let suggested = songs.map(s => s.title);
+  $: event_titles = event ? event.song_titles : [];
+  $: selected_song = event ? event.selected : "";
 
-      return song[field].toLowerCase().includes(filter) || acc;
-    }, false);
+  const postEvent = async eventChanges => {
+    const postData = (url = "", data = {}) =>
+      fetch(url, {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      }).then(res => res.json());
 
-  let search_input = "";
-  let s_title = true;
-  let s_melody = true;
-  let s_lyrics = false;
+    event = await postData("/event", { ...event, ...eventChanges });
+  };
 
-  $: search_fields = [
-    s_title && "title",
-    s_melody && "melodyTitle",
-    s_lyrics && "lyrics"
-  ].filter(t => t);
-  $: filter = search_input.toLowerCase();
-  $: filtered_songs = songs.filter(s => containsAny(s, search_fields, filter));
-
-  let added_songs = [];
-  let current_song = "";
+  const addSong = song_title => {
+    suggested = suggested.filter(s => s !== song_title);
+    postEvent({ song_titles: [...event_titles, song_title] });
+  };
 </script>
 
-<style>
-  .text_input {
-    width: 100%;
-    height: 2em;
-  }
-
-  span {
-    display: flex;
-    font-size: 0.9em;
-  }
-
-  .container {
-    display: flex;
-    justify-content: space-between;
-  }
-</style>
-
-<svelte:head>
-  <title>Sjungbok</title>
-</svelte:head>
-
-<h1>{event.title}</h1>
-
-{#each added_songs as song}
-  <div>{song.title}</div>
+{#each event_titles as song_title}
+  <div>{song_title}</div>
 {/each}
 
-<input
-  class="text_input"
-  bind:value={search_input}
-  placeholder="Sök titel, melodi eller text..." />
-<div class="container">
-  <span>
-    <input id="s_title" type="checkbox" bind:checked={s_title} />
-    <label for="s_title">matcha titel</label>
-  </span>
+{#if event}
+  <h1>{event.event_name}</h1>
+{/if}
 
-  <span>
-    <input id="s_melody" type="checkbox" bind:checked={s_melody} />
-    <label for="s_melody">matcha melodi</label>
-  </span>
-
-  <span>
-    <input id="s_lyrics" type="checkbox" bind:checked={s_lyrics} />
-    <label for="s_lyrics">matcha text</label>
-  </span>
-</div>
-
-{#each filtered_songs as song}
-  <div on:click={() => (added_songs = added_songs.concat(song))}>
-    {song.title}
-  </div>
+{#each suggested as song (song)}
+  <div on:click={() => addSong(song)}>{song}</div>
 {/each}
