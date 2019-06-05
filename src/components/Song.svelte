@@ -18,7 +18,6 @@
   {#if expand}
     <div transition:slide>
       {#each lyric_list as row, i}
-        <!--<div transition:fly={{y: -10*i, duration: 350}}>-->
         <div>
           {@html row}
         </div>

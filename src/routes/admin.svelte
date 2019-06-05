@@ -1,6 +1,17 @@
 <script>
   import SongList from "../components/SongList.svelte";
+  import { onMount } from "svelte";
   import songs from "../../static/booksongs.json";
+  let event = { title: "non" };
+
+  onMount(() => {
+    const eventSource = new EventSource("/event");
+
+    eventSource.onmessage = e => {
+      const new_event = JSON.parse(e.data);
+      if (new_event) event = new_event;
+    };
+  });
 
   const containsAny = (song, fields, filter) =>
     fields.reduce((acc, field) => {
@@ -24,6 +35,9 @@
   ].filter(t => t);
   $: filter = search_input.toLowerCase();
   $: filtered_songs = songs.filter(s => containsAny(s, search_fields, filter));
+
+  let added_songs = [];
+  let current_song = "";
 </script>
 
 <style>
@@ -47,6 +61,12 @@
   <title>Sjungbok</title>
 </svelte:head>
 
+<h1>{event.title}</h1>
+
+{#each added_songs as song}
+  <div>{song.title}</div>
+{/each}
+
 <input
   class="text_input"
   bind:value={search_input}
@@ -68,4 +88,8 @@
   </span>
 </div>
 
-<SongList songs={filtered_songs} />
+{#each filtered_songs as song}
+  <div on:click={() => (added_songs = added_songs.concat(song))}>
+    {song.title}
+  </div>
+{/each}

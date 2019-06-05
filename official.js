@@ -1,7 +1,8 @@
+const fs = require("fs");
 const songs = require("./static/songs.json");
 const real = [
   "Rosa på bal",
-  "Måltidssång (Fredmans epistel nr 21)",
+  "Måltidssång (Fredmans sång nr 21)",
   "Fyllevisa",
   "Köttet kommer",
   "Spritbolaget",
@@ -197,10 +198,76 @@ const real = [
   "Drunken sailor",
   "Kungssången",
   "Längtan till landet"
-].map(it => it.toLowerCase());
-const real_songs = Object.values(songs).filter(s =>
-  real.includes(s.title.toLowerCase())
+];
+
+const web_titles = Object.values(songs).map(s => s.title.toLowerCase());
+non_match = real.filter(it => !web_titles.includes(it.toLowerCase()));
+const match = real.filter(it => web_titles.includes(it.toLowerCase()));
+
+const editDistance = (a, b) => {
+  if (a.length == 0) return b.length;
+  if (b.length == 0) return a.length;
+
+  var matrix = [];
+
+  // increment along the first column of each row
+  var i;
+  for (i = 0; i <= b.length; i++) {
+    matrix[i] = [i];
+  }
+
+  // increment each column in the first row
+  var j;
+  for (j = 0; j <= a.length; j++) {
+    matrix[0][j] = j;
+  }
+
+  // Fill in the rest of the matrix
+  for (i = 1; i <= b.length; i++) {
+    for (j = 1; j <= a.length; j++) {
+      if (b.charAt(i - 1) == a.charAt(j - 1)) {
+        matrix[i][j] = matrix[i - 1][j - 1];
+      } else {
+        matrix[i][j] = Math.min(
+          matrix[i - 1][j - 1] + 1, // substitution
+          Math.min(
+            matrix[i][j - 1] + 1, // insertion
+            matrix[i - 1][j] + 1
+          )
+        ); // deletion
+      }
+    }
+  }
+
+  return matrix[b.length][a.length];
+};
+
+end_num = non_match
+  .map(it => parseInt(it.slice(it.length - 4, it.length)))
+  .filter(a => a);
+normal = non_match.filter(it => !parseInt(it.slice(it.length - 4, it.length)));
+
+pairs = non_match
+  .map(word => ({
+    word,
+    ...web_titles
+      .map(it => ({
+        other_word: it,
+        cost: editDistance(word.toLowerCase(), it.toLowerCase())
+      }))
+      .reduce((acc, curr) => (curr.cost < acc.cost ? curr : acc), {
+        cost: 9999
+      })
+  }))
+  .sort((a, b) => b.cost - a.cost)
+  .filter(it => it.cost < 4);
+
+const book_titles = real.filter(
+  it => web_titles.includes(it.toLowerCase()) || pairs.find(p => p.word === it)
 );
 
-const titles = Object.values(songs).map(s => s.title.toLowerCase());
-real.forEach(it => !titles.includes(it) && console.log(it));
+const full_songs = Object.values(songs);
+console.log(full_songs);
+const book_songs = full_songs.filter(it => book_titles.includes(it.title));
+
+fs.writeFile("./booksongs.json", JSON.stringify(book_songs));
