@@ -1,15 +1,22 @@
 <script>
+  import { slide } from "svelte/transition";
+
   export let song;
   export let expand = false;
   export let selecter;
-
-  import { slide } from "svelte/transition";
+  export let hide;
 
   $: lyric_list = song.lyrics.split("\n");
 </script>
 
 <style>
   .enlarge {
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+
+  .hide {
+    opacity: 0.65;
   }
 
   .song {
@@ -42,7 +49,7 @@
   }
 </style>
 
-<button class:enlarge={expand} on:click={() => selecter(song.title)}>
+<button class:hide class:enlarge={expand} on:click={() => selecter(song.title)}>
   <h1>{song.title}</h1>
   <h3>Mel: {song.melodyTitle}</h3>
   {#if expand}

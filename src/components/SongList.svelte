@@ -23,6 +23,7 @@
     <Song
       {song}
       expand={only_one_song || selected_title === song.title}
+      hide={selected_title !== '' && selected_title !== song.title}
       {selecter} />
   {:else}
     <h2>{empty_list_text}</h2>

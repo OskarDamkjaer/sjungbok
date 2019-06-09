@@ -15,8 +15,10 @@ Stöder konceptet events! Om inget event finns så visas alla sånger.
 [] css
 [] deploy
 [] släpp på android
-[] scroll into view
 [] clean up the garbage that is offical.js.
+
+[x] Coolt om de andra hade mer diskret styling om något visades och padding på valda ökades.
+[] scroll into view // alltid en viss höjd från toppen om open inte om close
 
 # Adminview
 
