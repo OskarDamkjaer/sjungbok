@@ -6,8 +6,6 @@
   import { slide } from "svelte/transition";
 
   $: lyric_list = song.lyrics.split("\n");
-  // TODO scroll into view
-  // formatta
 </script>
 
 <style>
