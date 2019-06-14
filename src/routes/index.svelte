@@ -1,5 +1,5 @@
 <script>
-  import { active, event_name, song_titles } from "../../static/event.json";
+  import { active, name, song_titles } from "../../static/event.json";
   import book_songs from "../../static/booksongs.json";
   const songs = book_songs.filter(s => song_titles.includes(s.title));
 
@@ -28,7 +28,7 @@
 </svelte:head>
 
 {#if active}
-  <h1>Sångblad {event_name}</h1>
+  <h1>Sångblad {name}</h1>
   <SongList {songs} />
 {:else}
   <h1>Inget event</h1>

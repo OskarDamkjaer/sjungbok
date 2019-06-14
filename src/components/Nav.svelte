@@ -68,5 +68,8 @@
         alla sånger
       </a>
     </li>
+    <li>
+      <a class={segment === 'admin' ? 'selected' : ''} href="admin">admin</a>
+    </li>
   </ul>
 </nav>

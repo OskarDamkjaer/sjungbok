@@ -19,6 +19,7 @@ Stöder konceptet events! Om inget event finns så visas alla sånger.
 
 [x] Coolt om de andra hade mer diskret styling om något visades och padding på valda ökades.
 [] scroll into view // alltid en viss höjd från toppen om open inte om close
+[] sök i admin + designa om
 
 # Adminview
 

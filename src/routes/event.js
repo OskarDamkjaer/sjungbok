@@ -1,8 +1,7 @@
 let event = {
   active: false,
-  event_name: "",
-  song_titles: [],
-  selected: null
+  name: "default",
+  song_titles: []
 };
 
 export const get = (req, res, next) => sendJson(res, event);
