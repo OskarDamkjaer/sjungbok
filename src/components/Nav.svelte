@@ -46,10 +46,6 @@
     padding: 1em 0.5em;
     display: block;
   }
-
-  .grey {
-    color: grey;
-  }
 </style>
 
 <nav>

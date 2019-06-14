@@ -1,6 +1,6 @@
 let event = {
   active: false,
-  name: "default",
+  name: "tomt",
   song_titles: []
 };
 

@@ -39,11 +39,11 @@
   };
 
   const substring = (a, b) => a.toLowerCase().includes(b.toLowerCase());
-  const compare_event = (e1, e2) =>
-    //TODO import lodash to do comparison
-    JSON.stringify(e1) === JSON.stringify(e2);
+  //TODO import lodash to do comparison
+  const compare_event = (e1, e2) => JSON.stringify(e1) === JSON.stringify(e2);
 
   let last_server_event = null;
+  let bad_guy = !true;
   let search_input = "";
   let name = "sångblad";
   let active = false;
@@ -59,8 +59,6 @@
 
 <style>
   input {
-    width: 90%;
-    margin: 0.3em;
     margin-top: 0em;
     border: none;
     padding: 0.2em;
@@ -90,6 +88,16 @@
     padding: 10px;
   }
 
+  .submit-button {
+    margin-right: 0.3em;
+    padding: 0.2em;
+    border-radius: 5px;
+    border: none;
+    color: inherit;
+    background-color: white;
+    font-size: inherit;
+  }
+
   li {
     text-decoration: underline;
     list-style: none;
@@ -110,14 +118,43 @@
 
   .header {
     margin-left: 0.3em;
-    margin-right: 0.3em;
     display: grid;
-    grid-template-columns: repeat(5, auto);
+    grid-template-columns: repeat(4, auto);
     grid-column-gap: 0.2em;
+    font-size: 1em;
   }
 
   .no-sync {
-    background-color: red;
+    background-color: #d81b1b;
+    color: white;
+    font-weight: 600;
+  }
+  .active-form {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .checkbox {
+    width: 2em;
+  }
+  .search-input {
+    width: calc(100% - 0.3em);
+  }
+
+  @media (max-width: 780px) {
+    .container {
+      flex-direction: column;
+    }
+    .chosen-container {
+      height: 20em;
+      margin-bottom: 1em;
+    }
+
+    .header {
+      grid-template-columns: repeat(2, auto);
+      grid-row-gap: 0.5em;
+      margin-bottom: 1em;
+    }
   }
 </style>
 
@@ -125,42 +162,56 @@
   {#if active}Ändra{:else}Skapa{/if}
   event.
 </h1>
+{#if bad_guy}
+  <h1>de finns ingen säkerhet, lovar du att var snäll?</h1>
+  <button on:click={() => (bad_guy = false)}>jodå</button>
+{:else}
+  <div class="container">
+    <div class="chosen-container" class:inactive={!event.active}>
+      <span>
+        <h1>
+          {name}
+          {#if !active}(dolt){/if}
+        </h1>
+      </span>
 
-<div class="container">
-  <div class="chosen-container" class:inactive={!event.active}>
-    <span>
-      <h1>
-        {name}
-        {#if !active}(dolt){/if}
-      </h1>
-    </span>
+      {#each selected_titles as title}
+        <li>{title}</li>
+      {/each}
+    </div>
 
-    {#each selected_titles as title}
-      <li>{title}</li>
-    {/each}
+    <div>
+      <span class="header">
+        <span>Eventnamn:</span>
+        <input bind:value={name} />
+        <span class="active-form">
+          <label for="activate">Visa eventet?</label>
+          <input
+            type="checkbox"
+            class="checkbox"
+            id="activate"
+            bind:checked={active} />
+        </span>
+        <button
+          class="submit-button"
+          class:no-sync={!sync}
+          on:click={postEvent}>
+          sync:a till appen
+        </button>
+      </span>
+      <input
+        on:keydown={handle_key_down}
+        class="search-input"
+        bind:value={search_input}
+        placeholder="Sök bland sångtitlar" />
+      {#each filtered_songs as song (song.title)}
+        <button
+          class="song-button"
+          class:chosen={song.in_event}
+          on:click={() => toggleSong(song.title)}>
+          {song.title}
+        </button>
+      {/each}
+    </div>
   </div>
-
-  <div>
-    <span class="header">
-      <span>event-namn:</span>
-      <input bind:value={name} />
-      <label for="activate">Aktivt?</label>
-      <input type="checkbox" id="activate" bind:checked={active} />
-      <button class:no-sync={!sync} on:click={postEvent}>
-        sync:a till appen
-      </button>
-    </span>
-    <input
-      on:keydown={handle_key_down}
-      bind:value={search_input}
-      placeholder="Sök bland titlar" />
-    {#each filtered_songs as song (song.title)}
-      <button
-        class="song-button"
-        class:chosen={song.in_event}
-        on:click={() => toggleSong(song.title)}>
-        {song.title}
-      </button>
-    {/each}
-  </div>
-</div>
+{/if}

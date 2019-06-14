@@ -19,6 +19,11 @@
     margin: 0 0 0.5em 0;
   }
 
+  p,
+  a {
+    text-align: center;
+  }
+
   @media (min-width: 480px) {
     h1 {
       font-size: 4em;
@@ -29,6 +34,7 @@
 <svelte:head>
   <title>Sjungbok</title>
 </svelte:head>
+
 {#if promise}
   {#await promise}
     <p>laddar event</p>
@@ -40,13 +46,19 @@
         songs={book_songs.filter(s => event.song_titles.includes(s.title))} />
     {:else}
       <h1>Inget event</h1>
-      <div>
-        Det pågår inget event just nu men du kan använda sjungboken ändå
-      </div>
-      <a href="songs">Gå till alla sånger?</a>
+      <p>
+        Det pågår inget event just nu men du kan använda sjungboken ändå.
+        <br />
+        <br />
+        <a href="songs">Gå till alla sånger?</a>
+      </p>
     {/if}
   {:catch error}
-    <!-- promise was rejected -->
-    <p>Something went wrong: {error.message}</p>
+    <p>
+      Whoops vi kunde ladda in ett event
+      <br />
+      <br />
+      <a href="songs">Gå till alla sånger?</a>
+    </p>
   {/await}
 {/if}
