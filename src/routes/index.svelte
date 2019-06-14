@@ -1,9 +1,12 @@
 <script>
-  import { active, name, song_titles } from "../../static/event.json";
+  import { onMount } from "svelte";
   import book_songs from "../../static/booksongs.json";
-  const songs = book_songs.filter(s => song_titles.includes(s.title));
-
   import SongList from "../components/SongList.svelte";
+
+  onMount(() => {
+    promise = fetch("/event").then(res => res.json());
+  });
+  let promise = null;
 </script>
 
 <style>
@@ -26,11 +29,24 @@
 <svelte:head>
   <title>Sjungbok</title>
 </svelte:head>
-
-{#if active}
-  <h1>Sångblad {name}</h1>
-  <SongList {songs} />
-{:else}
-  <h1>Inget event</h1>
-  <div>Det pågår inget event just nu men du kan använda sjungboken ändå</div>
+{#if promise}
+  {#await promise}
+    <p>laddar event</p>
+  {:then event}
+    {#if event.active}
+      <h1>Sångblad {event.name}</h1>
+      <SongList
+        empty_list_text="sångbladet är tomt :("
+        songs={book_songs.filter(s => event.song_titles.includes(s.title))} />
+    {:else}
+      <h1>Inget event</h1>
+      <div>
+        Det pågår inget event just nu men du kan använda sjungboken ändå
+      </div>
+      <a href="songs">Gå till alla sånger?</a>
+    {/if}
+  {:catch error}
+    <!-- promise was rejected -->
+    <p>Something went wrong: {error.message}</p>
+  {/await}
 {/if}

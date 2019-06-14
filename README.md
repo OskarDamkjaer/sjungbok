@@ -14,6 +14,7 @@ se till att de andra sidorna är i synk?
 
 [] Matcha officiella sångerna för att minska bundle size
 [] Fixa ner storleken genom att sortera bort allt som inte är fysiska sjungboken
+[] Lisens
 [] Strategi för att uppdatera sånger och events
 [] konceptet favoriter? Då kan den inte vara _helt_ statisk? Eller localstore:a favoriter?
 [] fina ikoner för checkboxes?

@@ -1,6 +1,5 @@
 <script>
   export let segment;
-  import { active } from "../../static/event.json";
 </script>
 
 <style>
@@ -56,12 +55,7 @@
 <nav>
   <ul>
     <li>
-      <a
-        class:grey={!active}
-        class={segment === undefined ? 'selected' : ''}
-        href=".">
-        sångblad
-      </a>
+      <a class={segment === undefined ? 'selected' : ''} href=".">sångblad</a>
     </li>
     <li>
       <a class={segment === 'songs' ? 'selected' : ''} href="songs">
