@@ -2,6 +2,14 @@
 
 Stöder konceptet events! Om inget event finns så visas alla sånger.
 
+# ongoing
+
+se till att det är tydligt om ett event är igång eller inte. Kanske en Live symbol i bladet?
+Hur aktiverar man?
+Hur tar man bort ett event som är just nu?
+fixa css på admin page
+se till att de andra sidorna är i synk?
+
 ## todo
 
 [] Matcha officiella sångerna för att minska bundle size
@@ -16,6 +24,7 @@ Stöder konceptet events! Om inget event finns så visas alla sånger.
 [] deploy
 [] släpp på android
 [] clean up the garbage that is offical.js.
+[] visa albin sen ellor???
 
 [x] Coolt om de andra hade mer diskret styling om något visades och padding på valda ökades.
 [] scroll into view // alltid en viss höjd från toppen om open inte om close
