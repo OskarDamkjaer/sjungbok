@@ -14,8 +14,8 @@
     const animationDurationMS = 401;
 
     setTimeout(() => {
-      document.getElementById(title).scrollIntoView({ behavior: "smooth" });
-      window.scrollByLines(-1.35, { behavior: "smooth" });
+      //document.getElementById(title).scrollIntoView({ behavior: "smooth" });
+      //window.scrollByLines(-1.35, { behavior: "smooth" });
     }, animationDurationMS);
   };
 </script>

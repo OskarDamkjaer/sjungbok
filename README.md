@@ -11,16 +11,17 @@ En sjungbok för våra sittningar på data som stöder sångblad byggda till eve
 [x] sök i admin + designa om
 [x] Licens
 [x] scroll into view // alltid en viss höjd från toppen om open inte om close
+[x] deploy
 [] kolla andra webläsare/mobiler
 [] Få med allt från sångbladet på ett hållbart sätt
 [] Extra knapp för att läsa in alla sånger
-[] deploy
 [] släpp på android
 
 # kvalitets-todo
 
-[] visa för sångförmän?
+[x] visa för sångförmän?
 [] visa för uxperson?
 [] Göra det snyggt mha feedback
 [] kolla prestanda beroende på antal sånger osv
 [] testa i andra webläsare
+[] scroll into view e skräp
