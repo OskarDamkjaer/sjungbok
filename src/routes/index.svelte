@@ -43,7 +43,9 @@
       <h1>Sångblad {event.name}</h1>
       <SongList
         empty_list_text="sångbladet är tomt :("
-        songs={book_songs.filter(s => event.song_titles.includes(s.title))} />
+        songs={event.song_titles.map(title =>
+          book_songs.find(s => s.title === title)
+        )} />
     {:else}
       <h1>Inget event</h1>
       <p>
