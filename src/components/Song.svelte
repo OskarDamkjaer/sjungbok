@@ -1,5 +1,6 @@
 <script>
   import { slide } from "svelte/transition";
+  import { onMount } from "svelte";
 
   export let song;
   export let expand = false;
@@ -7,6 +8,16 @@
   export let hide;
 
   $: lyric_list = song.lyrics.split("\n");
+
+  const selectAndScroll = title => {
+    selecter(title);
+    const animationDurationMS = 401;
+
+    setTimeout(() => {
+      document.getElementById(title).scrollIntoView({ behavior: "smooth" });
+      window.scrollByLines(-1.35, { behavior: "smooth" });
+    }, animationDurationMS);
+  };
 </script>
 
 <style>
@@ -49,11 +60,14 @@
   }
 </style>
 
-<button class:hide class:enlarge={expand} on:click={() => selecter(song.title)}>
-  <h1>{song.title}</h1>
+<button
+  class:hide
+  class:enlarge={expand}
+  on:click={() => selectAndScroll(song.title)}>
+  <h1 id={song.title}>{song.title}</h1>
   <h3>Mel: {song.melodyTitle}</h3>
   {#if expand}
-    <div class="song" transition:slide>
+    <div class="song" id="open" transition:slide>
       {#each lyric_list as row, i}
         <div>
           {@html row}
