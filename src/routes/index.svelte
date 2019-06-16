@@ -8,7 +8,6 @@
 </script>
 
 <script>
-  import { onMount } from "svelte";
   import book_songs from "../../static/booksongs.json";
   import SongList from "../components/SongList.svelte";
 

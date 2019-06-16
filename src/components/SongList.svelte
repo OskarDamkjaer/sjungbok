@@ -4,11 +4,12 @@
   export let songs;
   export let empty_list_text = "Inga sånger matchade din sökning";
 
-  $: only_one_song = songs.length === 1;
-
-  let selected_title = "";
   const selecter = title =>
     selected_title === title ? (selected_title = "") : (selected_title = title);
+
+  let selected_title = "";
+
+  $: only_one_song = songs.length === 1;
 </script>
 
 <style>

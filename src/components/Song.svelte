@@ -7,8 +7,6 @@
   export let selecter;
   export let hide;
 
-  $: lyric_list = song.lyrics.split("\n");
-
   const selectAndScroll = title => {
     selecter(title);
     const animationDurationMS = 400;
@@ -17,6 +15,8 @@
       window.scrollByLines(-1.35, { behavior: "smooth" });
     }, animationDurationMS);
   };
+
+  $: lyric_list = song.lyrics.split("\n");
 </script>
 
 <style>
