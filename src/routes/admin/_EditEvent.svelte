@@ -1,9 +1,9 @@
 <script>
-  import SongList from "../components/SongList.svelte";
+  import SongList from "../../components/SongList.svelte";
   import ShowEvent from "./_ShowEvent.svelte";
-  import song_list from "../../static/booksongs.json";
+  import song_list from "../../../static/booksongs.json";
 
-  // STUFF SOMEONE ELSE GAVE US
+  // GIVEN STATE AND METHODS
   export let active;
   export let song_titles;
   export let name;
@@ -11,7 +11,7 @@
   export let toggle_song;
   export let sync_to_app;
 
-  // METHODS
+  // PRIVATE METHODS
   const handle_key_down = e =>
     e.key === "Enter" &&
     filtered_songs.length > 0 &&

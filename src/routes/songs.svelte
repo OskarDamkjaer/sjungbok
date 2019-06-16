@@ -2,6 +2,7 @@
   import SongList from "../components/SongList.svelte";
   import songs from "../../static/booksongs.json";
 
+  // METHODS
   const containsAny = (song, fields, filter) =>
     fields.reduce((acc, field) => {
       if (!song[field]) {
@@ -12,11 +13,13 @@
       return song[field].toLowerCase().includes(filter) || acc;
     }, false);
 
+  //STATE
   let search_input = "";
   let s_title = true;
   let s_melody = true;
   let s_lyrics = false;
 
+  //COMPUTED
   $: search_fields = [
     s_title && "title",
     s_melody && "melodyTitle",

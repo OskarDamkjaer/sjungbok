@@ -8,10 +8,10 @@
 </script>
 
 <script>
-  import SongList from "../components/SongList.svelte";
+  import SongList from "../../components/SongList.svelte";
   import ShowEvent from "./_ShowEvent.svelte";
   import EditEvent from "./_EditEvent.svelte";
-  import song_list from "../../static/booksongs.json";
+  import song_list from "../../../static/booksongs.json";
 
   // PRELOADED STATE
   export let name;

@@ -1,6 +1,6 @@
 <script>
-  import SongList from "../components/SongList.svelte";
-  import book_songs from "../../static/booksongs.json"; // prob could be a prop?
+  import SongList from "../../components/SongList.svelte";
+  import book_songs from "../../../static/booksongs.json"; // prob could be a prop?
 
   // GIVEN STATE/PROPS
   export let name;
