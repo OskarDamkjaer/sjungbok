@@ -43,7 +43,7 @@
   const compare_event = (e1, e2) => JSON.stringify(e1) === JSON.stringify(e2);
 
   let last_server_event = null;
-  let bad_guy = !true;
+  let bad_guy = true;
   let search_input = "";
   let name = "sångblad";
   let active = false;
@@ -140,19 +140,19 @@
   .search-input {
     width: calc(100% - 0.3em);
   }
+  .header {
+    grid-template-columns: repeat(2, auto);
+    grid-row-gap: 0.5em;
+    margin-bottom: 1em;
+  }
 
   @media (max-width: 780px) {
     .container {
       flex-direction: column;
     }
+
     .chosen-container {
       height: 20em;
-      margin-bottom: 1em;
-    }
-
-    .header {
-      grid-template-columns: repeat(2, auto);
-      grid-row-gap: 0.5em;
       margin-bottom: 1em;
     }
   }
