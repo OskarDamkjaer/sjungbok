@@ -18,7 +18,7 @@
   export let song_titles;
   export let last_server_event;
 
-  // METODS
+  // METHODS
   const handle_key_down = e =>
     e.key === "Enter" &&
     filtered_songs.length > 0 &&
@@ -27,8 +27,8 @@
   const postEvent = async () => {
     const postData = (url = "", data = {}) =>
       fetch(url, {
-        method: "POST", // *GET, POST, PUT, DELETE, etc.
-        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        method: "POST",
+        cache: "no-cache",
         headers: {
           "Content-Type": "application/json"
         },
@@ -46,17 +46,19 @@
     }
   };
 
+  const remove_song = song_title => {
+    song_titles = song_titles.filter(s => s !== song_title);
+  };
+
   const move_song = (song_title, wanted_pos) => {
     const song_count = song_titles.length;
     const new_index = Math.min(song_count - 1, Math.max(0, wanted_pos));
     const without = song_titles.filter(s => s !== song_title);
-    // new index is between 0 and max_index
 
     if (wanted_pos === song_count) {
       song_titles = without.concat(song_title);
     } else {
       const before = without.slice(0, new_index);
-
       const after = without.slice(new_index);
       song_titles = before.concat(song_title).concat(after);
     }
@@ -66,7 +68,7 @@
   const compare_event = (e1, e2) => JSON.stringify(e1) === JSON.stringify(e2); //eww
 
   // STATE
-  let bad_guy = true;
+  let bad_guy = !true;
   let search_input = "";
   let all_songs = song_list;
 
@@ -165,7 +167,7 @@
   <button on:click={() => (bad_guy = false)}>jodå</button>
 {:else}
   <div class="container">
-    <ShowEvent {event} {move_song} />
+    <ShowEvent {event} {move_song} {remove_song} />
     <div>
       <span class="header">
         <span>Eventnamn:</span>

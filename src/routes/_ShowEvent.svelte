@@ -1,13 +1,19 @@
 <script>
   import SongList from "../components/SongList.svelte";
+  import book_songs from "../../static/booksongs.json"; // prob could be a prop?
 
   // GIVEN STATE/PROPS
   export let event;
   export let move_song;
+  export let remove_song;
 
-  // METODS
+  // METHODS
+  const showLyrics = title =>
+    expand === title ? (expand = "") : (expand = title);
 
   // STATE
+  let open_options = false;
+  let expand = "";
 
   // COMPUTED
 </script>
@@ -22,13 +28,12 @@
     padding: 10px;
   }
 
-  li {
-    text-decoration: underline;
-    list-style: none;
+  .inactive {
+    background-color: #9e9a9a87;
   }
 
-  .inactive {
-    background-color: #fff;
+  .song-title {
+    text-decoration: underline;
   }
 
   @media (max-width: 780px) {
@@ -37,19 +42,77 @@
       margin-bottom: 1em;
     }
   }
+  h1 {
+    margin-bottom: 0.3em;
+  }
+
+  ol {
+    padding: 0;
+    margin: inherit;
+  }
+  li {
+    list-style: none;
+  }
+
+  button {
+    color: inherit;
+    background-color: inherit;
+    border: none;
+    margin: 0;
+    padding: 0;
+    font-size: inherit;
+  }
+
+  .hide {
+    display: none;
+  }
+  .numbers {
+    list-style: normal;
+    margin-left: 1rem;
+  }
+
+  .lyrics {
+    padding: 0.3em;
+    margin: 0;
+    white-space: pre;
+    background-color: #fccfff;
+    border-radius: 10px;
+    font-size: 0.8em;
+  }
 </style>
 
 <div class="event-container" class:inactive={!event.active}>
   <h1>
     {event.name}
     {#if !event.active}(dolt){/if}
+
+    {#if open_options}
+      <button on:click={() => (open_options = false)}>🔒</button>
+    {:else}
+      <button on:click={() => (open_options = true)}>🔐</button>
+    {/if}
   </h1>
 
-  {#each event.song_titles as title, index (title)}
-    <li>
-      <button on:click={() => move_song(title, index - 1)}>up</button>
-      <button on:click={() => move_song(title, index + 1)}>down</button>
-      {title}
-    </li>
-  {/each}
+  <ol>
+    {#each event.song_titles as title, index (title)}
+      <li class:numbers={open_options}>
+        <span
+          on:click={() => open_options && showLyrics(title)}
+          class="song-title">
+          {title}
+        </span>
+        <span class:hide={!open_options}>
+          <button on:click={() => move_song(title, index - 1)}>👆</button>
+          <button on:click={() => move_song(title, index + 1)}>👇</button>
+          <button on:click={() => remove_song(title)}>💥</button>
+          <button on:click={() => showLyrics(title)}>🔍</button>
+        </span>
+        {#if expand === title}
+          <div class="lyrics">
+            {book_songs.find(s => s.title === title).lyrics}
+          </div>
+        {/if}
+      </li>
+    {/each}
+  </ol>
 </div>
