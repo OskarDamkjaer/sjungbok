@@ -9,8 +9,8 @@
 
 <script>
   import SongList from "../components/SongList.svelte";
+  import ShowEvent from "./_ShowEvent.svelte";
   import song_list from "../../static/booksongs.json";
-  import { onMount } from "svelte";
 
   // PRELOADED STATE
   export let name;
@@ -43,6 +43,22 @@
       song_titles = song_titles.filter(s => s !== song_title);
     } else {
       song_titles = song_titles.concat(song_title);
+    }
+  };
+
+  const move_song = (song_title, wanted_pos) => {
+    const song_count = song_titles.length;
+    const new_index = Math.min(song_count - 1, Math.max(0, wanted_pos));
+    const without = song_titles.filter(s => s !== song_title);
+    // new index is between 0 and max_index
+
+    if (wanted_pos === song_count) {
+      song_titles = without.concat(song_title);
+    } else {
+      const before = without.slice(0, new_index);
+
+      const after = without.slice(new_index);
+      song_titles = before.concat(song_title).concat(after);
     }
   };
 
@@ -84,15 +100,6 @@
     text-decoration: none;
   }
 
-  .chosen-container {
-    overflow-x: scroll;
-    min-width: 20em;
-    height: 30em;
-    background-color: white;
-    border-radius: 5px;
-    padding: 10px;
-  }
-
   .submit-button {
     margin-right: 0.3em;
     padding: 0.2em;
@@ -103,11 +110,6 @@
     font-size: inherit;
   }
 
-  li {
-    text-decoration: underline;
-    list-style: none;
-  }
-
   .container {
     display: flex;
   }
@@ -115,10 +117,6 @@
   .chosen {
     text-decoration: underline;
     background-color: #77e670;
-  }
-
-  .inactive {
-    background-color: #fff;
   }
 
   .header {
@@ -155,11 +153,6 @@
     .container {
       flex-direction: column;
     }
-
-    .chosen-container {
-      height: 20em;
-      margin-bottom: 1em;
-    }
   }
 </style>
 
@@ -172,19 +165,7 @@
   <button on:click={() => (bad_guy = false)}>jodå</button>
 {:else}
   <div class="container">
-    <div class="chosen-container" class:inactive={!event.active}>
-      <span>
-        <h1>
-          {name}
-          {#if !active}(dolt){/if}
-        </h1>
-      </span>
-
-      {#each song_titles as title}
-        <li>{title}</li>
-      {/each}
-    </div>
-
+    <ShowEvent {event} {move_song} />
     <div>
       <span class="header">
         <span>Eventnamn:</span>
