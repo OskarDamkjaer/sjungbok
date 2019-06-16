@@ -16,6 +16,8 @@ En sjungbok för våra sittningar på data som stöder sångblad byggda till eve
 [] Få med allt från sångbladet på ett hållbart sätt
 [] Extra knapp för att läsa in alla sånger
 [] släpp på android
+[] promote song list to be own list
+[] preloada för att slippa flashes
 
 # kvalitets-todo
 

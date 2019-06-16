@@ -1,19 +1,19 @@
 <script>
   import SongList from "../components/SongList.svelte";
-  import songs from "../../static/booksongs.json";
+  import song_list from "../../static/booksongs.json";
   import { onMount } from "svelte";
+  // TODO current highlight is slow?
 
+  // LIFECYCLE
   onMount(async () => {
     const res = await fetch("/event");
     last_server_event = await res.json();
     name = last_server_event.name;
     active = last_server_event.active;
-    song_titles = songs.map(s => ({
-      title: s.title,
-      in_event: last_server_event.song_titles.includes(s.title)
-    }));
+    song_titles = last_server_event.song_titles;
   });
 
+  // METODS
   const handle_key_down = e =>
     e.key === "Enter" &&
     filtered_songs.length > 0 &&
@@ -33,27 +33,31 @@
   };
 
   const toggleSong = song_title => {
-    sync = song_titles = song_titles.map(s =>
-      s.title === song_title ? { ...s, in_event: !s.in_event } : s
-    );
+    const in_event = song_titles.find(s => s === song_title);
+    if (in_event) {
+      song_titles = song_titles.filter(s => s !== song_title);
+    } else {
+      song_titles = song_titles.concat(song_title);
+    }
   };
 
   const substring = (a, b) => a.toLowerCase().includes(b.toLowerCase());
-  //TODO import lodash to do comparison
-  const compare_event = (e1, e2) => JSON.stringify(e1) === JSON.stringify(e2);
+  const compare_event = (e1, e2) => JSON.stringify(e1) === JSON.stringify(e2); //eww
 
+  // STATE
   let last_server_event = null;
   let bad_guy = true;
   let search_input = "";
   let name = "sångblad";
   let active = false;
-  let song_titles = songs.map(s => ({ title: s.title, in_event: false }));
+  let all_songs = song_list;
+  let song_titles = [];
 
-  $: filtered_songs = song_titles.filter(
+  // COMPUTED
+  $: filtered_songs = all_songs.filter(
     s => !search_input || substring(s.title, search_input)
   );
-  $: selected_titles = song_titles.filter(s => s.in_event).map(s => s.title);
-  $: event = { name, song_titles: selected_titles, active };
+  $: event = { name, song_titles, active };
   $: sync = last_server_event && compare_event(last_server_event, event);
 </script>
 
@@ -175,7 +179,7 @@
         </h1>
       </span>
 
-      {#each selected_titles as title}
+      {#each song_titles as title}
         <li>{title}</li>
       {/each}
     </div>
@@ -207,7 +211,7 @@
       {#each filtered_songs as song (song.title)}
         <button
           class="song-button"
-          class:chosen={song.in_event}
+          class:chosen={song_titles.includes(song.title)}
           on:click={() => toggleSong(song.title)}>
           {song.title}
         </button>
