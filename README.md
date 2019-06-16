@@ -27,3 +27,4 @@ En sjungbok för våra sittningar på data som stöder sångblad byggda till eve
 [] kolla prestanda beroende på antal sånger osv
 [] testa i andra webläsare
 [] scroll into view e skräp
+Perfomance av grönighihtligt?

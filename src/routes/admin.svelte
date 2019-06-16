@@ -1,17 +1,22 @@
+<script context="module">
+  export async function preload(page, session) {
+    const res = await this.fetch("/event");
+    const last_server_event = await res.json();
+
+    return { last_server_event, ...last_server_event };
+  }
+</script>
+
 <script>
   import SongList from "../components/SongList.svelte";
   import song_list from "../../static/booksongs.json";
   import { onMount } from "svelte";
-  // TODO current highlight is slow?
 
-  // LIFECYCLE
-  onMount(async () => {
-    const res = await fetch("/event");
-    last_server_event = await res.json();
-    name = last_server_event.name;
-    active = last_server_event.active;
-    song_titles = last_server_event.song_titles;
-  });
+  // PRELOADED STATE
+  export let name;
+  export let active;
+  export let song_titles;
+  export let last_server_event;
 
   // METODS
   const handle_key_down = e =>
@@ -45,13 +50,9 @@
   const compare_event = (e1, e2) => JSON.stringify(e1) === JSON.stringify(e2); //eww
 
   // STATE
-  let last_server_event = null;
   let bad_guy = true;
   let search_input = "";
-  let name = "sångblad";
-  let active = false;
   let all_songs = song_list;
-  let song_titles = [];
 
   // COMPUTED
   $: filtered_songs = all_songs.filter(
