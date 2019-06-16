@@ -1,6 +1,7 @@
 {
-  "name": "TODO",
-  "description": "TODO",
+  "name": "Yet Another Sjungbok",
+  "description": "En app för sångblad och sångbok på D-sektionen",
+  "license": "MIT",
   "version": "0.0.1",
   "scripts": {
     "dev": "sapper dev",
