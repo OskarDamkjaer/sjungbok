@@ -1,12 +1,18 @@
+<script context="module">
+  export async function preload(page, session) {
+    const res = await this.fetch("/event");
+    const event = await res.json();
+
+    return { event };
+  }
+</script>
+
 <script>
   import { onMount } from "svelte";
   import book_songs from "../../static/booksongs.json";
   import SongList from "../components/SongList.svelte";
 
-  onMount(() => {
-    promise = fetch("/event").then(res => res.json());
-  });
-  let promise = null;
+  export let event;
 </script>
 
 <style>
@@ -35,32 +41,19 @@
   <title>Sjungbok</title>
 </svelte:head>
 
-{#if promise}
-  {#await promise}
-    <p>laddar event</p>
-  {:then event}
-    {#if event.active}
-      <h1>Sångblad {event.name}</h1>
-      <SongList
-        empty_list_text="sångbladet är tomt :("
-        songs={event.song_titles.map(title =>
-          book_songs.find(s => s.title === title)
-        )} />
-    {:else}
-      <h1>Inget event</h1>
-      <p>
-        Det pågår inget event just nu men du kan använda sjungboken ändå.
-        <br />
-        <br />
-        <a href="songs">Gå till alla sånger?</a>
-      </p>
-    {/if}
-  {:catch error}
-    <p>
-      Whoops vi kunde ladda in ett event
-      <br />
-      <br />
-      <a href="songs">Gå till alla sånger?</a>
-    </p>
-  {/await}
+{#if event.active}
+  <h1>Sångblad {event.name}</h1>
+  <SongList
+    empty_list_text="sångbladet är tomt :("
+    songs={event.song_titles.map(title =>
+      book_songs.find(s => s.title === title)
+    )} />
+{:else}
+  <h1>Inget event</h1>
+  <p>
+    Det pågår inget event just nu men du kan använda sjungboken ändå.
+    <br />
+    <br />
+    <a href="songs">Gå till alla sånger?</a>
+  </p>
 {/if}
