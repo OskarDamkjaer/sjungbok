@@ -3,16 +3,19 @@
   import ShowEvent from "./_ShowEvent.svelte";
   import song_list from "../../static/booksongs.json";
 
-  // PRELOADED STATE
-  export let event;
+  // STUFF SOMEONE ELSE GAVE US
+  export let active;
+  export let song_titles;
+  export let name;
   export let sync;
-  export let toggleSong;
+  export let toggle_song;
+  export let sync_to_app;
 
   // METHODS
   const handle_key_down = e =>
     e.key === "Enter" &&
     filtered_songs.length > 0 &&
-    toggleSong(filtered_songs[0].title);
+    toggle_song(filtered_songs[0].title);
 
   const substring = (a, b) => a.toLowerCase().includes(b.toLowerCase());
 
@@ -20,9 +23,6 @@
   let search_input = "";
 
   // COMPUTED
-  $: active = event.active;
-  $: song_titles = event.song_titles;
-  $: name = event.name;
   $: filtered_songs = song_list.filter(
     s => !search_input || substring(s.title, search_input)
   );
@@ -35,10 +35,6 @@
     padding: 0.2em;
     border-radius: 5px;
     font-size: 1em;
-  }
-
-  .top {
-    margin-left: 0.3rem;
   }
 
   .song-button {
@@ -59,10 +55,6 @@
     color: inherit;
     background-color: white;
     font-size: inherit;
-  }
-
-  .container {
-    display: flex;
   }
 
   .chosen {
@@ -99,12 +91,6 @@
     grid-row-gap: 0.5em;
     margin-bottom: 1em;
   }
-
-  @media (max-width: 780px) {
-    .container {
-      flex-direction: column;
-    }
-  }
 </style>
 
 <div>
@@ -119,7 +105,7 @@
         id="activate"
         bind:checked={active} />
     </span>
-    <button class="submit-button" class:no-sync={!sync} on:click={postEvent}>
+    <button class="submit-button" class:no-sync={!sync} on:click={sync_to_app}>
       sync:a till appen
     </button>
   </span>
@@ -132,7 +118,7 @@
     <button
       class="song-button"
       class:chosen={song_titles.includes(song.title)}
-      on:click={() => toggleSong(song.title)}>
+      on:click={() => toggle_song(song.title)}>
       {song.title}
     </button>
   {/each}

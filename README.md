@@ -1,6 +1,6 @@
 # Yet another sjungbok
 
-En sjungbok för våra sittningar på data som stöder sångblad byggda till event!
+En sjungbok för våra sittningar på data som stöder sångblad byggda till event! Skrivet i Svelte.
 
 ## todo
 
@@ -12,12 +12,15 @@ En sjungbok för våra sittningar på data som stöder sångblad byggda till eve
 [x] Licens
 [x] scroll into view // alltid en viss höjd från toppen om open inte om close
 [x] deploy
-[] kolla andra webläsare/mobiler
 [] Få med allt från sångbladet på ett hållbart sätt
-[] Extra knapp för att läsa in alla sånger
 [] släpp på android
 [] promote song list to be own list
 [] preloada för att slippa flashes
+[] break out eventbuilder to be component
+[] force refresh
+[] scrollshit
+[] featurestopp?
+[] ska man få se kategorigreja?
 
 # kvalitets-todo
 
@@ -27,8 +30,5 @@ En sjungbok för våra sittningar på data som stöder sångblad byggda till eve
 [] kolla prestanda beroende på antal sånger osv
 [] testa i andra webläsare
 [] scroll into view e skräp
-Perfomance av grönighihtligt?
-
-appostrofer osv
-scrollshit
-break out eventbuilder to be copmoennt
+[] Perfomance av grönighihtligt och annat?  
+[] appostrofer osv

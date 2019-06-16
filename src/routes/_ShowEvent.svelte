@@ -3,7 +3,9 @@
   import book_songs from "../../static/booksongs.json"; // prob could be a prop?
 
   // GIVEN STATE/PROPS
-  export let event;
+  export let name;
+  export let active;
+  export let song_titles;
   export let move_song;
   export let remove_song;
 
@@ -84,10 +86,10 @@
   }
 </style>
 
-<div class="event-container" class:inactive={!event.active}>
+<div class="event-container" class:inactive={!active}>
   <h1>
-    {event.name}
-    {#if !event.active}(dolt){/if}
+    {name}
+    {#if !active}(dolt){/if}
 
     {#if open_options}
       <button on:click={() => (open_options = false)}>🔒</button>
@@ -97,7 +99,7 @@
   </h1>
 
   <ol>
-    {#each event.song_titles as title, index (title)}
+    {#each song_titles as title, index (title)}
       <li class:numbers={open_options}>
         <span
           on:click={() => open_options && showLyrics(title)}
