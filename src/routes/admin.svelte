@@ -70,10 +70,9 @@
   // STATE
   let bad_guy = !true;
   let search_input = "";
-  let all_songs = song_list;
 
   // COMPUTED
-  $: filtered_songs = all_songs.filter(
+  $: filtered_songs = song_list.filter(
     s => !search_input || substring(s.title, search_input)
   );
   $: event = { name, song_titles, active };

@@ -42,6 +42,7 @@
       margin-bottom: 1em;
     }
   }
+
   h1 {
     margin-bottom: 0.3em;
   }
@@ -73,11 +74,13 @@
 
   .lyrics {
     padding: 0.3em;
-    margin: 0;
+    margin-top: 0.3em;
     white-space: pre;
     background-color: #fccfff;
     border-radius: 10px;
     font-size: 0.8em;
+    width: max-content;
+    text-align: center;
   }
 </style>
 

@@ -28,3 +28,7 @@ En sjungbok för våra sittningar på data som stöder sångblad byggda till eve
 [] testa i andra webläsare
 [] scroll into view e skräp
 Perfomance av grönighihtligt?
+
+appostrofer osv
+scrollshit
+break out eventbuilder to be copmoennt
