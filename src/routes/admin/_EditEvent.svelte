@@ -18,14 +18,16 @@
     toggle_song(filtered_songs[0].title);
 
   const substring = (a, b) => a.toLowerCase().includes(b.toLowerCase());
+  const categories = Array.from(new Set(song_list.map(it => it.categoryTitle)));
 
   // STATE
   let search_input = "";
+  let cat_search = "alla";
 
   // COMPUTED
-  $: filtered_songs = song_list.filter(
-    s => !search_input || substring(s.title, search_input)
-  );
+  $: filtered_songs = song_list
+    .filter(s => !search_input || substring(s.title, search_input))
+    .filter(s => cat_search === "alla" || s.categoryTitle === cat_search);
 </script>
 
 <style>
@@ -84,7 +86,10 @@
     width: 2em;
   }
   .search-input {
-    width: calc(100% - 0.3em);
+    width: calc(100% - 10.5rem);
+  }
+  select {
+    width: 8rem;
   }
   .header {
     grid-template-columns: repeat(2, auto);
@@ -114,6 +119,12 @@
     class="search-input"
     bind:value={search_input}
     placeholder="Sök bland sångtitlar" />
+  <select bind:value={cat_search}>
+    <option>alla</option>
+    {#each categories as cat}
+      <option>{cat}</option>
+    {/each}
+  </select>
   {#each filtered_songs as song (song.title)}
     <button
       class="song-button"

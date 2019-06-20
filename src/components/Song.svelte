@@ -53,7 +53,10 @@
   class:enlarge={expand}
   on:click={() => selecter(song.title)}>
   <h1>{song.title}</h1>
-  <h3>Mel: {song.melodyTitle}</h3>
+  <h3>
+    Mel:
+    {@html song.melodyTitle}
+  </h3>
   {#if expand}
     <div class="song" id="open" transition:slide>
       {#each lyric_list as row, i}
