@@ -10,10 +10,7 @@
   const selectAndScroll = title => {
     selecter(title);
     const animationDurationMS = 400;
-    setTimeout(() => {
-      document.getElementById(title).scrollIntoView({ behavior: "smooth" });
-      window.scrollByLines(-1.35, { behavior: "smooth" });
-    }, animationDurationMS);
+    setTimeout(() => {}, animationDurationMS);
   };
 
   $: lyric_list = song.lyrics.split("\n");
@@ -60,10 +57,11 @@
 </style>
 
 <button
+  id={song.title}
   class:hide
   class:enlarge={expand}
   on:click={() => selectAndScroll(song.title)}>
-  <h1 id={song.title}>{song.title}</h1>
+  <h1>{song.title}</h1>
   <h3>Mel: {song.melodyTitle}</h3>
   {#if expand}
     <div class="song" id="open" transition:slide>

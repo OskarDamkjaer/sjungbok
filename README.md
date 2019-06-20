@@ -15,11 +15,13 @@ En sjungbok för våra sittningar på data som stöder sångblad byggda till eve
 [x] break out eventbuilder to be component
 [x] promote song list to be own list
 [x] preloada för att slippa flashes
-[] Få med allt från sångbladet på ett hållbart sätt
-[] force refresh
+[x] force refresh
 [] scrollshit
+
+# Stretch goals
+
+[] Få med allt från sångbladet på ett hållbart sätt, kanske en till adminvy?
 [] ska man få se kategorigreja?
-[] featurestopp?
 
 # kvalitets-todo
 
@@ -29,8 +31,8 @@ En sjungbok för våra sittningar på data som stöder sångblad byggda till eve
 [] kolla prestanda beroende på antal sånger osv
 [] testa i andra webläsare
 [] Perfomance av grönighihtligt och annat?  
-[] appostrofer osv
 [] förstå och förbättra hur appen jobbar under preloading och offlnie osv
+[] testa om fragments kan lösa scrollandet
 
 # meta
 

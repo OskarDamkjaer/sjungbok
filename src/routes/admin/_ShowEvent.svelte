@@ -114,7 +114,7 @@
         </span>
         {#if expand === title}
           <div class="lyrics">
-            {book_songs.find(s => s.title === title).lyrics}
+            {@html book_songs.find(s => s.title === title).lyrics}
           </div>
         {/if}
       </li>

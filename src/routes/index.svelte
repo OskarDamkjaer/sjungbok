@@ -12,6 +12,15 @@
   import SongList from "../components/SongList.svelte";
 
   export let event;
+
+  let loading = false;
+
+  const refresh = async () => {
+    loading = true;
+    const res = await fetch("/event");
+    event = await res.json();
+    loading = false;
+  };
 </script>
 
 <style>
@@ -34,21 +43,34 @@
       font-size: 4em;
     }
   }
+
+  .loading {
+    color: red;
+  }
+
+  button {
+    border: none;
+    background-color: inherit;
+    color: inherit;
+    font-size: inherit;
+  }
 </style>
 
 <svelte:head>
   <title>Sjungbok</title>
 </svelte:head>
 
+<h1 class:loading>
+  {#if event.active}Sångblad {event.name}{:else}Inget event{/if}
+  <button on:click={refresh}>🔄</button>
+</h1>
 {#if event.active}
-  <h1>Sångblad {event.name}</h1>
   <SongList
     empty_list_text="sångbladet är tomt :("
     songs={event.song_titles.map(title =>
       book_songs.find(s => s.title === title)
     )} />
 {:else}
-  <h1>Inget event</h1>
   <p>
     Det pågår inget event just nu men du kan använda sjungboken ändå.
     <br />
