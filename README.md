@@ -17,11 +17,7 @@ En sjungbok för våra sittningar på data som stöder sångblad byggda till eve
 [x] preloada för att slippa flashes
 [x] force refresh
 [x] scrollshit
-
-# Stretch goals
-
-[] Få med allt från sångbladet på ett hållbart sätt, kanske en till adminvy?
-[] ska man få se kategorigreja?
+[x] ska man få se kategorigreja?
 
 # kvalitets-todo
 
@@ -32,9 +28,9 @@ En sjungbok för våra sittningar på data som stöder sångblad byggda till eve
 [] testa i andra webläsare
 [] Perfomance av grönighihtligt och annat?  
 [] förstå och förbättra hur appen jobbar under preloading och offlnie osv
-[] testa om fragments kan lösa scrollandet
 
 # meta
 
 [] släpp på android
 [] skaffa dsekdomän
+[] Välj ett bra sätt att synka låtarna
