@@ -89,6 +89,7 @@
     width: calc(100% - 10.5rem);
   }
   select {
+    font-size: inherit;
     width: 8rem;
   }
   .header {

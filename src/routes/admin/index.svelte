@@ -63,7 +63,7 @@
   const compare_event = (e1, e2) => JSON.stringify(e1) === JSON.stringify(e2); //eww
 
   // STATE
-  let bad_guy = !true;
+  let bad_guy = true;
   let search_input = "";
 
   // COMPUTED

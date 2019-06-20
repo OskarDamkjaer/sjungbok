@@ -22,12 +22,12 @@ En sjungbok för våra sittningar på data som stöder sångblad byggda till eve
 # kvalitets-todo
 
 [x] visa för sångförmän?
+[x] förstå och förbättra hur appen jobbar under preloading och offlnie osv // enl service worker testar nätverket först
 [] visa för uxperson?
 [] Göra det snyggt mha feedback
 [] kolla prestanda beroende på antal sånger osv
 [] testa i andra webläsare
-[] Perfomance av grönighihtligt och annat?  
-[] förstå och förbättra hur appen jobbar under preloading och offlnie osv
+[] Perfomance av grönighihtligt och annat?
 
 # meta
 
