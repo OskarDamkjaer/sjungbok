@@ -5,13 +5,6 @@
   export let song;
   export let expand = false;
   export let selecter;
-  export let hide;
-
-  const selectAndScroll = title => {
-    selecter(title);
-    const animationDurationMS = 400;
-    setTimeout(() => {}, animationDurationMS);
-  };
 
   $: lyric_list = song.lyrics.split("\n");
 </script>
@@ -20,10 +13,8 @@
   .enlarge {
     margin-top: 2em;
     margin-bottom: 2em;
-  }
-
-  .hide {
-    opacity: 0.65;
+    opacity: 1;
+    background-color: #f8b7fc;
   }
 
   .song {
@@ -53,14 +44,14 @@
     width: 100%;
     padding: 0.3em;
     margin-bottom: 0.3em;
+    opacity: 0.9;
   }
 </style>
 
 <button
   id={song.title}
-  class:hide
   class:enlarge={expand}
-  on:click={() => selectAndScroll(song.title)}>
+  on:click={() => selecter(song.title)}>
   <h1>{song.title}</h1>
   <h3>Mel: {song.melodyTitle}</h3>
   {#if expand}

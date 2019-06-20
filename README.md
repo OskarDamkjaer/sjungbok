@@ -16,7 +16,7 @@ En sjungbok för våra sittningar på data som stöder sångblad byggda till eve
 [x] promote song list to be own list
 [x] preloada för att slippa flashes
 [x] force refresh
-[] scrollshit
+[x] scrollshit
 
 # Stretch goals
 

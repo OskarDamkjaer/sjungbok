@@ -4,10 +4,15 @@
   export let songs;
   export let empty_list_text = "Inga sånger matchade din sökning";
 
-  const selecter = title =>
-    selected_title === title ? (selected_title = "") : (selected_title = title);
+  const selecter = title => {
+    if (selected_titles.includes(title)) {
+      selected_titles = selected_titles.filter(it => it != title);
+    } else {
+      selected_titles = selected_titles.concat(title);
+    }
+  };
 
-  let selected_title = "";
+  let selected_titles = [];
 
   $: only_one_song = songs.length === 1;
 </script>
@@ -23,8 +28,7 @@
   {#each songs as song}
     <Song
       {song}
-      expand={only_one_song || selected_title === song.title}
-      hide={selected_title !== '' && selected_title !== song.title}
+      expand={only_one_song || selected_titles.includes(song.title)}
       {selecter} />
   {:else}
     <h2>{empty_list_text}</h2>
