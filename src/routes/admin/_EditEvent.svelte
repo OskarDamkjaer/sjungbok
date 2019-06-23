@@ -119,8 +119,9 @@
     on:keydown={handle_key_down}
     class="search-input"
     bind:value={search_input}
+    aria-label="Sök sånger"
     placeholder="Sök bland sångtitlar" />
-  <select bind:value={cat_search}>
+  <select aria-label="Välj kategorier" bind:value={cat_search}>
     <option>alla</option>
     {#each categories as cat}
       <option>{cat}</option>
