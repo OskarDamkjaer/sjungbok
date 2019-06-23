@@ -20,12 +20,13 @@
     margin: 0 auto;
     font-size: 2.8em;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 200;
     margin: 0 0 0.5em 0;
   }
 
   p,
   a {
+    font-weight: 200;
     text-align: center;
   }
 

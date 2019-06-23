@@ -31,18 +31,35 @@
 
 <style>
   .text_input {
-    width: 100%;
+    font-family: inherit;
+    font-size: 100%;
+    width: calc(100% - 14px); /* disregard border width and padding*/
+    margin: 0;
+    padding: 5px;
     height: 2em;
   }
 
   span {
     display: flex;
     font-size: 0.9em;
+    align-items: center;
+    margin-top: 0.4em;
+  }
+
+  label {
+    padding-left: 0.2em;
+    font-weight: 200;
+    color: #c3c3c3;
   }
 
   .container {
     display: flex;
+    width: 100%;
     justify-content: space-between;
+  }
+
+  input[type="checkbox"] {
+    margin: 0;
   }
 </style>
 

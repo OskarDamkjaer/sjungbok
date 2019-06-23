@@ -44,7 +44,7 @@
     width: 100%;
     padding: 0.3em;
     margin-bottom: 0.3em;
-    transition: background-color 0.2s linear;
+    transition: background-color 0.2s linear, margin 0.2s linear;
   }
 </style>
 
