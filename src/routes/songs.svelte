@@ -50,6 +50,7 @@
     padding-left: 0.2em;
     font-weight: 200;
     color: #c3c3c3;
+    transition: color 0.2s;
   }
 
   .container {
@@ -58,8 +59,30 @@
     justify-content: space-between;
   }
 
+  .checked {
+    color: #fefefe;
+    text-decoration: none;
+  }
+
   input[type="checkbox"] {
     margin: 0;
+  }
+
+  @media (min-width: 480px) {
+    .container {
+      justify-content: space-around;
+    }
+
+    label {
+      font-size: 2em;
+      text-decoration: line-through;
+    }
+
+    input[type="checkbox"] {
+      opacity: 0;
+      width: initial;
+      height: initial;
+    }
   }
 </style>
 
@@ -75,17 +98,17 @@
 <div class="container">
   <span>
     <input id="s_title" type="checkbox" bind:checked={s_title} />
-    <label for="s_title">matcha titel</label>
+    <label class:checked={s_title} for="s_title">matcha titel</label>
   </span>
 
   <span>
     <input id="s_melody" type="checkbox" bind:checked={s_melody} />
-    <label for="s_melody">matcha melodi</label>
+    <label class:checked={s_melody} for="s_melody">matcha melodi</label>
   </span>
 
   <span>
     <input id="s_lyrics" type="checkbox" bind:checked={s_lyrics} />
-    <label for="s_lyrics">matcha text</label>
+    <label class:checked={s_lyrics} for="s_lyrics">matcha text</label>
   </span>
 </div>
 
