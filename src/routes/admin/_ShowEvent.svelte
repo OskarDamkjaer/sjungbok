@@ -34,7 +34,7 @@
   @media (min-width: 480px) {
     .event-container {
       height: 42em;
-      min-width: 29.7em;
+      min-width: 21em;
     }
   }
 
