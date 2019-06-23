@@ -19,9 +19,15 @@
 
   const substring = (a, b) => a.toLowerCase().includes(b.toLowerCase());
   const categories = Array.from(new Set(song_list.map(it => it.categoryTitle)));
+  const sync_with_load = async () => {
+    loading = true;
+    await sync_to_app();
+    loading = false;
+  };
 
   // STATE
   let search_input = "";
+  let loading = false;
   let cat_search = "visa alla";
 
   // COMPUTED
@@ -31,6 +37,12 @@
 </script>
 
 <style>
+  @media (min-width: 480px) {
+    div {
+      width: 100%;
+    }
+  }
+
   .song-button {
     background-color: #f280a1;
     font-size: 0.9em;
@@ -111,8 +123,13 @@
       class="checkbox"
       id="activate"
       bind:checked={active} />
-    <button class="submit-button" class:no-sync={!sync} on:click={sync_to_app}>
-      {#if sync}i sync med appen{:else}ur sync, spara?{/if}
+    <button
+      class="submit-button"
+      class:no-sync={!sync}
+      on:click={sync_with_load}>
+      {#if sync}
+        i sync med appen
+      {:else if loading}syncar...{:else}ur sync, spara?{/if}
     </button>
   </span>
   <span>
