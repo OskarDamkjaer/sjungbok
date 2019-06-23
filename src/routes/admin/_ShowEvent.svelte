@@ -31,10 +31,10 @@
     padding: 10px;
   }
 
-  @media (max-width: 780px) {
+  @media (min-width: 480px) {
     .event-container {
-      height: 21em;
-      margin-bottom: 1em;
+      height: 42em;
+      min-width: 29.7em;
     }
   }
 
@@ -121,9 +121,9 @@
           {title}
         </span>
         <span class:hide={!open_options}>
+          <button on:click={() => showLyrics(title)}>🔍</button>
           <button on:click={() => move_song(title, index - 1)}>👆</button>
           <button on:click={() => move_song(title, index + 1)}>👇</button>
-          <button on:click={() => showLyrics(title)}>🔍</button>
         </span>
         {#if expand === title}
           <div class="lyrics-text">

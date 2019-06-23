@@ -30,6 +30,11 @@
 </script>
 
 <style>
+  input[type="checkbox"] {
+    width: 48px;
+    height: 48px;
+  }
+
   .text_input {
     font-family: inherit;
     font-size: 100%;

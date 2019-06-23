@@ -22,115 +22,117 @@
 
   // STATE
   let search_input = "";
-  let cat_search = "alla";
+  let cat_search = "visa alla";
 
   // COMPUTED
   $: filtered_songs = song_list
     .filter(s => !search_input || substring(s.title, search_input))
-    .filter(s => cat_search === "alla" || s.categoryTitle === cat_search);
+    .filter(s => cat_search === "visa alla" || s.categoryTitle === cat_search);
 </script>
 
 <style>
-  input {
-    margin-top: 0em;
-    border: none;
-    padding: 0.2em;
-    border-radius: 5px;
-    font-size: 1em;
-  }
-
   .song-button {
-    background-color: #fccfff;
-    font-size: 0.8em;
+    background-color: #f280a1;
+    font-size: 0.9em;
     border: none;
     color: inherit;
     margin: 0.3em;
     padding: 0.3em;
     text-decoration: none;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  .songchosen {
+    text-decoration: underline;
+    background-color: #6bb367;
+    color: black;
+  }
+
+  input[type="text"] {
+    border: none;
+    padding: 0.2em;
+    font-size: 1em;
+    width: 100%;
+    height: 1.2rem;
+  }
+
+  label {
+    margin-right: 0.4em;
+  }
+
+  select {
+    font-family: inherit;
+    font-size: inherit;
+    width: 6.5rem;
+    color: inherit;
+    direction: rtl;
+    margin-left: 0.3em;
+    color: #2e2e32;
+    background-color: white;
+    border-radius: 0;
+    height: 1.6rem;
+  }
+
+  option {
+    direction: ltr;
+  }
+
+  span {
+    display: flex;
+    margin: 0.6em 0em 0.6em 0.3em;
+    align-items: center;
   }
 
   .submit-button {
-    margin-right: 0.3em;
-    padding: 0.2em;
-    border-radius: 5px;
     border: none;
-    color: inherit;
+    color: black;
+    margin-left: auto;
     background-color: white;
+    transition: width 0.2s, background-color 0.2s, color 0.2s;
     font-size: inherit;
-  }
-
-  .chosen {
-    text-decoration: underline;
-    background-color: #77e670;
-  }
-
-  .header {
-    margin-left: 0.3em;
-    display: grid;
-    grid-template-columns: repeat(4, auto);
-    grid-column-gap: 0.2em;
-    font-size: 1em;
   }
 
   .no-sync {
-    background-color: #d81b1b;
+    background-color: #d83839;
     color: white;
     font-weight: 600;
-  }
-  .active-form {
-    display: flex;
-    justify-content: flex-start;
-  }
-
-  .checkbox {
-    width: 2em;
-  }
-  .search-input {
-    width: calc(100% - 10.5rem);
-  }
-  select {
-    font-size: inherit;
-    width: 8rem;
-  }
-  .header {
-    grid-template-columns: repeat(2, auto);
-    grid-row-gap: 0.5em;
-    margin-bottom: 1em;
   }
 </style>
 
 <div>
-  <span class="header">
-    <span>Eventnamn:</span>
-    <input bind:value={name} />
-    <span class="active-form">
-      <label for="activate">Visa eventet?</label>
-      <input
-        type="checkbox"
-        class="checkbox"
-        id="activate"
-        bind:checked={active} />
-    </span>
+  <span>
+    <label for="name">Eventnamn:</label>
+    <input type="text" id="name" bind:value={name} />
+  </span>
+  <span>
+    <label for="activate">Visa eventet?</label>
+    <input
+      type="checkbox"
+      class="checkbox"
+      id="activate"
+      bind:checked={active} />
     <button class="submit-button" class:no-sync={!sync} on:click={sync_to_app}>
-      sync:a till appen
+      {#if sync}i sync med appen{:else}ur sync, spara?{/if}
     </button>
   </span>
-  <input
-    on:keydown={handle_key_down}
-    class="search-input"
-    bind:value={search_input}
-    aria-label="Sök sånger"
-    placeholder="Sök bland sångtitlar" />
-  <select aria-label="Välj kategorier" bind:value={cat_search}>
-    <option>alla</option>
-    {#each categories as cat}
-      <option>{cat}</option>
-    {/each}
-  </select>
+  <span>
+    <input
+      on:keydown={handle_key_down}
+      bind:value={search_input}
+      type="text"
+      aria-label="Sök sånger"
+      placeholder="Sök bland sångtitlar..." />
+    <select aria-label="Välj kategorier" bind:value={cat_search}>
+      <option>visa alla</option>
+      {#each categories as cat}
+        <option>{cat}</option>
+      {/each}
+    </select>
+  </span>
   {#each filtered_songs as song (song.title)}
     <button
       class="song-button"
-      class:chosen={song_titles.includes(song.title)}
+      class:songchosen={song_titles.includes(song.title)}
       on:click={() => toggle_song(song.title)}>
       {song.title}
     </button>
