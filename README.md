@@ -28,6 +28,10 @@ En sjungbok för våra sittningar på data som stöder sångblad byggda till eve
 [] kolla prestanda beroende på antal sånger osv
 [] testa i andra webläsare
 [] Perfomance av grönighihtligt och annat?
+[] kolla lighthouse best practistses osv
+[] också något error i console.log
+[] gå igenom alla manifest osv
+[] tester
 
 # meta
 
