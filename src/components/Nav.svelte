@@ -59,7 +59,7 @@
       </a>
     </li>
     <li>
-      <a class={segment === 'admin' ? 'selected' : ''} href="admin">login</a>
+      <a class={segment === 'login' ? 'selected' : ''} href="login">login</a>
     </li>
   </ul>
 </nav>
