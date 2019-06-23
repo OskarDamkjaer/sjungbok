@@ -8,6 +8,11 @@ body {
   background-color: #ff747433;
 }
 
+input[type="checkbox"] {
+  width: 48px;
+  height: 48px;
+}
+
 h1,
 h2,
 h3,

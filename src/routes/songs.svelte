@@ -35,11 +35,6 @@
     height: 2em;
   }
 
-  input[type="checkbox"] {
-    width: 48px;
-    height: 48px;
-  }
-
   span {
     display: flex;
     font-size: 0.9em;

@@ -33,7 +33,7 @@
   h3 {
     margin: 0;
     font-style: italic;
-    color: rgb(104, 104, 104);
+    color: #FFFFF; /*rgb(104, 104, 104);*/
   }
 
   button {
