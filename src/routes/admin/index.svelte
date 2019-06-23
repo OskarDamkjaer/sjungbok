@@ -75,17 +75,14 @@
 </script>
 
 <style>
-  .top {
-    margin-left: 0.3rem;
-  }
-
   .container {
     display: flex;
+    flex-direction: column;
   }
 
-  @media (max-width: 780px) {
+  @media (min-width: 480px) {
     .container {
-      flex-direction: column;
+      flex-direction: row;
     }
   }
 </style>
@@ -93,11 +90,6 @@
 <svelte:head>
   <title>Admin</title>
 </svelte:head>
-
-<h1 class="top">
-  {#if active}Ändra{:else}Skapa{/if}
-  event.
-</h1>
 
 {#if bad_guy}
   <h1>de finns ingen säkerhet, lovar du att var snäll?</h1>
