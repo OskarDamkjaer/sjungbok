@@ -32,6 +32,7 @@ En sjungbok för våra sittningar på data som stöder sångblad byggda till eve
 [] också något error i console.log
 [] gå igenom alla manifest osv
 [] tester
+[] buttons should not be smaller than 48x48px:
 
 # meta
 

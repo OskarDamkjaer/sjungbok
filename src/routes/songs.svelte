@@ -35,6 +35,11 @@
     height: 2em;
   }
 
+  input[type="checkbox"] {
+    width: 48px;
+    height: 48px;
+  }
+
   span {
     display: flex;
     font-size: 0.9em;
@@ -47,12 +52,13 @@
 </style>
 
 <svelte:head>
-  <title>Sjungbok</title>
+  <title>Alla sånger</title>
 </svelte:head>
 
 <input
   class="text_input"
   bind:value={search_input}
+  aria-label="Sök sånger"
   placeholder="Sök titel, melodi eller text..." />
 <div class="container">
   <span>
