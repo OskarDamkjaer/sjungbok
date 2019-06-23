@@ -59,12 +59,7 @@
       </a>
     </li>
     <li>
-      <a
-        class={segment === 'admin' ? 'selected' : ''}
-        rel="prefetch"
-        href="admin">
-        admin
-      </a>
+      <a class={segment === 'admin' ? 'selected' : ''} href="admin">login</a>
     </li>
   </ul>
 </nav>

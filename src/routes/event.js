@@ -3,11 +3,17 @@ let event = {
   name: "tomt",
   song_titles: []
 };
+const password = "password";
+jj;
 
 export const get = (req, res, next) => sendJson(res, event);
 
 export const post = (req, res, next) => {
-  event = req.body;
+  if (req.body.password === process.env.SJUNGPASS) {
+    const copy = req.body;
+    delete copy.password;
+    event = copy;
+  }
   sendJson(res, event);
 };
 

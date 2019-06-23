@@ -117,12 +117,12 @@
     <input type="text" id="name" bind:value={name} />
   </span>
   <span>
-    <label for="activate">Visa eventet?</label>
     <input
       type="checkbox"
       class="checkbox"
       id="activate"
       bind:checked={active} />
+    <label for="activate">Visa eventet?</label>
     <button
       class="submit-button"
       class:no-sync={!sync}
