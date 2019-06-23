@@ -27,14 +27,14 @@ En sjungbok för våra sittningar på data som stöder sångblad byggda till eve
 [x] gå igenom alla manifest osv
 [x] buttons should not be smaller than 48x48px:
 [x] också något error i console.log
-[] Lösenord?
-[] Göra det snyggt mha feedback
-[] testa i andra webläsare
+[x] Göra det snyggt mha feedback
+[x] testa i andra webläsare
 [] avslutade check genom alla steg
 
 # kanske en annan gång?
 
 [] Välj ett bra sätt att lägga in nya låtar, knapp längst ner på adminsidan?
+[] Lösenord?
 [] Maxa presetanda, vissa reactiva grejer borde ändras
 
 # meta

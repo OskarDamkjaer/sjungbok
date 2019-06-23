@@ -33,6 +33,7 @@
 
   @media (min-width: 480px) {
     .event-container {
+      margin-top: 0.6em;
       height: 42em;
       min-width: 21em;
     }
