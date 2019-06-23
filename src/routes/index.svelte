@@ -12,15 +12,6 @@
   import SongList from "../components/SongList.svelte";
 
   export let event;
-
-  let loading = false;
-
-  const refresh = async () => {
-    loading = true;
-    const res = await fetch("/event");
-    event = await res.json();
-    loading = false;
-  };
 </script>
 
 <style>
@@ -29,7 +20,7 @@
     margin: 0 auto;
     font-size: 2.8em;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 500;
     margin: 0 0 0.5em 0;
   }
 
@@ -43,26 +34,14 @@
       font-size: 4em;
     }
   }
-
-  .loading {
-    color: red;
-  }
-
-  button {
-    border: none;
-    background-color: inherit;
-    color: inherit;
-    font-size: inherit;
-  }
 </style>
 
 <svelte:head>
   <title>Sjungbok</title>
 </svelte:head>
 
-<h1 class:loading>
+<h1>
   {#if event.active}Sångblad {event.name}{:else}Inget event{/if}
-  <button on:click={refresh}>🔄</button>
 </h1>
 {#if event.active}
   <SongList

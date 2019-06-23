@@ -23,19 +23,21 @@ En sjungbok för våra sittningar på data som stöder sångblad byggda till eve
 
 [x] visa för sångförmän?
 [x] förstå och förbättra hur appen jobbar under preloading och offlnie osv // enl service worker testar nätverket först
-[] visa för uxperson?
+[x] kolla lighthouse best practistses osv
+[x] gå igenom alla manifest osv
+[x] buttons should not be smaller than 48x48px:
+[x] också något error i console.log
+[] Lösenord?
 [] Göra det snyggt mha feedback
-[] kolla prestanda beroende på antal sånger osv
 [] testa i andra webläsare
-[] Perfomance av grönighihtligt och annat?
-[] kolla lighthouse best practistses osv
-[] också något error i console.log
-[] gå igenom alla manifest osv
-[] tester
-[] buttons should not be smaller than 48x48px:
+[] avslutade check genom alla steg
+
+# kanske en annan gång?
+
+[] Välj ett bra sätt att lägga in nya låtar, knapp längst ner på adminsidan?
+[] Maxa presetanda, vissa reactiva grejer borde ändras
 
 # meta
 
 [] släpp på android
 [] skaffa dsekdomän
-[] Välj ett bra sätt att synka låtarna

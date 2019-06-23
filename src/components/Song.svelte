@@ -14,7 +14,7 @@
     margin-top: 2em;
     margin-bottom: 2em;
     opacity: 1;
-    background-color: #f8b7fc;
+    background-color: #f280a1;
   }
 
   .song {
@@ -33,18 +33,18 @@
   h3 {
     margin: 0;
     font-style: italic;
-    color: #FFFFF; /*rgb(104, 104, 104);*/
+    color: #2e2e32c7;
   }
 
   button {
-    color: inherit;
+    background-color: #9966cc;
+    color: #2e2e32;
     border: none;
     display: block;
-    background-color: #fccfff;
     width: 100%;
     padding: 0.3em;
     margin-bottom: 0.3em;
-    opacity: 0.9;
+    transition: background-color 0.2s linear;
   }
 </style>
 

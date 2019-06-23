@@ -4,8 +4,8 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-size: 14px;
   line-height: 1.5;
-  color: #333;
-  background-color: #ff747433;
+  color: #fefefe;
+  background-color: #2e2e32;
 }
 
 input[type="checkbox"] {
@@ -30,15 +30,6 @@ h1 {
 
 a {
   color: inherit;
-}
-
-code {
-  font-family: menlo, inconsolata, monospace;
-  font-size: calc(1em - 2px);
-  color: #555;
-  background-color: #f0f0f0;
-  padding: 0.2em 0.4em;
-  border-radius: 2px;
 }
 
 @media (min-width: 400px) {
