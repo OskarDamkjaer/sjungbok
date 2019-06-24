@@ -37,7 +37,7 @@
   }
 
   button {
-    background-color: #9966cc;
+    background-color: #b28cd9;
     color: #2e2e32;
     border: none;
     display: block;

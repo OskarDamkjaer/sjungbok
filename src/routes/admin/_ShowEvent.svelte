@@ -65,7 +65,6 @@
 
   li {
     list-style: none;
-    font-weight: 200;
   }
 
   .title {
