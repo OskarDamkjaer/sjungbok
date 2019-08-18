@@ -14,7 +14,8 @@ polka()
       threshold: 0
     }),
     sirv("static", {
-      dev
+      dev,
+      dotfiles: true
     }),
     sapper.middleware()
   )
