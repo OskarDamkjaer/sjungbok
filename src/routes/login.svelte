@@ -36,6 +36,6 @@
 <p>Har du fel lösen funkar inte appen</p>
 
 <form on:submit={handleSubmit}>
-  <input aria-label="password" bind:value={password} />
+  <input type="password" aria-label="password" bind:value={password} />
   <button type="submit">Gå till adminsidan</button>
 </form>
