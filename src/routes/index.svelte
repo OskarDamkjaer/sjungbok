@@ -42,7 +42,7 @@
 </svelte:head>
 
 <h1>
-  {#if event.active}Sångblad {event.name}{:else}Inget event{/if}
+  {#if event.active}{event.name}{:else}Inget event{/if}
 </h1>
 {#if event.active}
   <SongList
