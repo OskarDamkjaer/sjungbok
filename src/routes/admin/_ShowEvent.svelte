@@ -14,7 +14,7 @@
     expand === title ? (expand = "") : (expand = title);
 
   // STATE
-  let open_options = false;
+  let open_options = true;
   let expand = "";
 
   // COMPUTED
