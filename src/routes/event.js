@@ -1,18 +1,13 @@
-import passwords from "./_passwords";
-
 let event = {
   active: false,
   name: "tomt",
   song_titles: []
 };
+
 export const get = (req, res, next) => sendJson(res, event);
 
 export const post = (req, res, next) => {
-  if (passwords.includes(req.body.password)) {
-    const copy = req.body;
-    delete copy.password;
-    event = copy;
-  }
+  event = req.body;
   sendJson(res, event);
 };
 

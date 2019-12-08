@@ -12,7 +12,6 @@
   import ShowEvent from "./_ShowEvent.svelte";
   import EditEvent from "./_EditEvent.svelte";
   import song_list from "../../../static/booksongs.json";
-  import { pw_store } from "../store.js";
 
   // PRELOADED STATE
   export let name;
@@ -29,7 +28,7 @@
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ ...data, password: $pw_store })
+        body: JSON.stringify(data)
       }).then(res => res.json());
     last_server_event = await postData("/event", event);
   };
