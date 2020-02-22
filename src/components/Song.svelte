@@ -22,6 +22,10 @@
     padding-bottom: 1em;
   }
 
+  .line {
+    min-height: 1em;
+  }
+
   div {
     font-size: 1.2em;
   }
@@ -60,7 +64,7 @@
   {#if expand}
     <div class="song" id="open" transition:slide>
       {#each lyric_list as row, i}
-        <div>
+        <div class="line">
           {@html row}
         </div>
       {/each}
